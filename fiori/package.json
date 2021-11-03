@@ -30,13 +30,13 @@
         "kind": "odata",
         "model": "@capire/orders"
       },
+      "extensibility": {
+        "kind": "uiflex"
+      },
       "db": {
-        "kind": "sql",
-        "[development]": {
-          "model": "db/sqlite"
-        },
-        "[production]": {
-          "model": "db/hana"
+        "kind": "sqlite",
+        "credentials": {
+          "database": "sqlite.db"
         }
       },
       "messaging": {

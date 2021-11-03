@@ -1,0 +1,14 @@
+# Add integer extension field to Books
+POST http://localhost:4004/extensibility/addExtension
+Content-Type: application/json
+
+{
+  "extensions": [
+    "{\"extend\":\"AdminService.Books\",\"elements\":{\"neuesFeld2\":{\"type\":\"cds.String\", \"default\":\"hallo\"}}}"
+  ]
+}
+
+###
+    # { "extend": "AdminService.Books", "elements":{
+    #   "abc":{"type":"cds.Integer"}
+    # }},
