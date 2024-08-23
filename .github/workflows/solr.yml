@@ -47,14 +47,6 @@ jobs:
           echo "Installing Solr ${{ env.SOLR_VERSION }} to Maven repository"
           mvn install:install-file -DgroupId=org.apache.solr -DartifactId=solr -Dversion=${{ env.SOLR_VERSION }} -Dpackaging=zip -Dfile=solr-${{ env.SOLR_VERSION }}.zip
 
-      - name: Remove Solr ZIP from Local Maven Repository
-        run: |
-          echo "Removing Solr ZIP from local Maven repository"
-          rm -rf ~/.m2/repository/org/apache/solr/solr/${{ env.SOLR_VERSION }}
 
-      - name: Start Solr and SAP Commerce Cloud (Optional)
-        run: |
-          echo "Starting Solr and SAP Commerce Cloud to verify integration"
-          ./solr-${{ env.SOLR_VERSION }}/bin/solr start
   
 
