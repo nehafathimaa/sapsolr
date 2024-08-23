@@ -23,9 +23,9 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Set solrserver.solr.server.version property
-        run: |
-          echo "solrserver.solr.server.version=${{ env.SOLR_VERSION }}" >> local.properties
+     # - name: Set solrserver.solr.server.version property
+      #  run: |
+       #   echo "solrserver.solr.server.version=${{ env.SOLR_VERSION }}" >> local.properties
 
       - name: Download Solr ${{ env.SOLR_VERSION }} Package
         id: download_solr_pkg
