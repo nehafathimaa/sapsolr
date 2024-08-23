@@ -10,7 +10,7 @@
             <groupId>org.apache.solr</groupId>
             <artifactId>solr</artifactId>
             <version>9.5.0</version>
-            
+            <type>zip<type>
         </dependency>
     </dependencies>
 </project>
