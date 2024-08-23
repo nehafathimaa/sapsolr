@@ -1,4 +1,4 @@
-name: Install Solr 9 for SAP Commerce Cloud
+name: Install and Verify Solr 9 for SAP Commerce Cloud
 
 on:
   workflow_dispatch:
@@ -16,7 +16,7 @@ jobs:
         with: 
           fetch-depth: 1
           fetch-tags: true
- 
+
       - name: Install Java 17
         uses: actions/setup-java@v4
         with:
@@ -41,10 +41,14 @@ jobs:
           echo "Repackaging Solr ${{ env.SOLR_VERSION }} as ZIP"
           zip -r solr-${{ env.SOLR_VERSION }}.zip solr-${{ env.SOLR_VERSION }}
 
-      - name: Install Solr to Local Maven Repository
-        id: install_solr_pkg
+      - name: Remove Solr ZIP from Local Maven Repository
         run: |
-          echo "Installing Solr ${{ env.SOLR_VERSION }} to Maven repository"
-          mvn install:install-file -DgroupId=org.apache.solr -DartifactId=solr -Dversion=${{ env.SOLR_VERSION }} -Dpackaging=zip -Dfile=solr-${{ env.SOLR_VERSION }}.zip
-          mvn dependency:tree
-        
+          echo "Removing Solr ZIP from local Maven repository"
+          rm -rf ~/.m2/repository/org/apache/solr/solr/${{ env.SOLR_VERSION }}
+
+      - name: Start Solr and SAP Commerce Cloud (Optional)
+        run: |
+          echo "Starting Solr and SAP Commerce Cloud to verify integration"
+          ./solr-${{ env.SOLR_VERSION }}/bin/solr start
+          # Add commands to start your Commerce Cloud instance here
+
