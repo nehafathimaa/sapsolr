@@ -9,8 +9,7 @@
         <dependency>
             <groupId>org.apache.solr</groupId>
             <artifactId>solr-distribution</artifactId>
-            <version>${env.SOLR_VERSION}</version>
-            <type>zip</type>
+            <version>9.5.0</version>
         </dependency>
     </dependencies>
 </project>
