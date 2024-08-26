@@ -1,4 +1,4 @@
-name: Install and Verify Solr 9 for SAP Commerce Cloud
+# name: Install and Verify Solr 9 for SAP Commerce Cloud
 
 on:
   workflow_dispatch:
@@ -33,13 +33,13 @@ jobs:
           echo "Downloading Solr ${{ env.SOLR_VERSION }}"
           curl -s -O "https://archive.apache.org/dist/solr/solr/${{ env.SOLR_VERSION }}/solr-${{ env.SOLR_VERSION }}.tgz"
 
-      - name: Extract and Repackage Solr
-        id: repackage_solr
-        run: |
-          echo "Extracting Solr ${{ env.SOLR_VERSION }}"
-          tar -xzf solr-${{ env.SOLR_VERSION }}.tgz
-          echo "Repackaging Solr ${{ env.SOLR_VERSION }} as ZIP"
-          zip -r solr-${{ env.SOLR_VERSION }}.zip solr-${{ env.SOLR_VERSION }}
+   #   - name: Extract and Repackage Solr
+    #    id: repackage_solr
+     #   run: |
+      #    echo "Extracting Solr ${{ env.SOLR_VERSION }}"
+       #   tar -xzf solr-${{ env.SOLR_VERSION }}.tgz
+        #  echo "Repackaging Solr ${{ env.SOLR_VERSION }} as ZIP"
+         # zip -r solr-${{ env.SOLR_VERSION }}.zip solr-${{ env.SOLR_VERSION }}
 
 
       - name: Install Solr ${{ env.SOLR_VERSION }} to Local Maven Repository
