@@ -14,7 +14,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 <groupId>org.apache.solr</groupId>
 <artifactId>solr</artifactId>
 <version>9.5.0</version>
-  <type>zip</type>
+  <type>tgz</type>
 </dependency>
 </dependencies>
 </project>
