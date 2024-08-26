@@ -47,5 +47,5 @@ jobs:
         run: |
           echo "Installing Solr ${{ env.SOLR_VERSION }} to Maven repository"
           mvn install:install-file -DgroupId=org.apache.solr -DartifactId=solr -Dversion=${{ env.SOLR_VERSION }} -Dpackaging=tgz -Dfile=solr-${{ env.SOLR_VERSION }}.tgz
-          mvn dependency:tree
+          mvn -f misc/devops/pom.xml dependency:tree
 
