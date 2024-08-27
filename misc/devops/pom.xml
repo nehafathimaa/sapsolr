@@ -5,5 +5,5 @@
     <groupId>org.apache.solr</groupId>
     <artifactId>solr</artifactId>
     <version>9.5.0</version>
-    <packaging>zip</packaging>
+    <type>zip</type>
 </project>
