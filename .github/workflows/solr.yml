@@ -33,6 +33,6 @@ jobs:
         id: install_solr_pkg
         run: |
           echo "Installing Solr ${{ env.SOLR_VERSION }} ZIP to Maven repository"
-          mvn install:install-file -DgroupId=org.apache.solr -DartifactId=solr -Dversion=${{ env.SOLR_VERSION }} -Dpackaging=zip -Dfile=solr-${{ env.SOLR_VERSION }}.zip
+          mvn install:install-file -DgroupId=org.apache.solr -DartifactId=solr -Dversion=${{ env.SOLR_VERSION }} -Dpackaging=zip -Dfile=solr-${{ env.SOLR_VERSION }}.zip  -DgeneratePom=true
           ls -l misc/devops/pom.xml
           mvn -f misc/devops/pom.xml dependency:tree
