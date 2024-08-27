@@ -27,6 +27,7 @@ jobs:
         run: |
           echo "Downlading packages" 
           curl -s -O "https://archive.apache.org/dist/solr/solr/${{ env.SOLR_VERSION }}/solr-${{ env.SOLR_VERSION }}.tgz"
+          pwd
           ls -l
           tar xzf solr-${{ env.SOLR_VERSION }}.tgz 
           zip -r -qq solr-${{ env.SOLR_VERSION }}.zip solr-${{ env.SOLR_VERSION }}
