@@ -1,38 +1,39 @@
-on:
+on: 
   workflow_dispatch:
-
-env:
+ 
+ 
+env: 
   SOLR_VERSION: 9.5.0
-
+ 
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
+ 
+    steps: 
       - name: Git checkout
         uses: actions/checkout@v4
-        with:
+        with: 
           fetch-depth: 1
           fetch-tags: true
-
+ 
       - name: Install Java 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-
-      - name: Download Solr ${{ env.SOLR_VERSION }} Package
+ 
+      - name: Download solr ${{ vars.SOLR_VERSION }} Package
         id: download_solr_pkg
         run: |
-          echo "Downloading Solr ${{ env.SOLR_VERSION }}"
-          curl -O "https://archive.apache.org/dist/solr/solr/${{ env.SOLR_VERSION }}/solr-${{ env.SOLR_VERSION }}.tgz"
-          tar -zxvf solr-${{ env.SOLR_VERSION }}.tgz
-          zip -r solr-${{ env.SOLR_VERSION }}.zip solr-${{ env.SOLR_VERSION }}
-          ls -ltr
-
-      - name: Install Solr ${{ env.SOLR_VERSION }} ZIP to Local Maven Repository
+          echo "Downlading packages" 
+          curl -s -O "https://archive.apache.org/dist/solr/solr/${{ env.SOLR_VERSION }}/solr-${{ env.SOLR_VERSION }}.tgz"
+          ls -l
+          tar xzf solr-${{ env.SOLR_VERSION }}.tgz 
+          zip -r -qq solr-${{ env.SOLR_VERSION }}.zip solr-${{ env.SOLR_VERSION }}
+ 
+      - name: Install Solr ${{ vars.SOLR_VERSION }}
         id: install_solr_pkg
         run: |
-          echo "Installing Solr ${{ env.SOLR_VERSION }} ZIP to Maven repository"
-          mvn install:install-file -Dpackaging=zip -DgroupId=org.apache.solr -DartifactId=solr -Dversion=${{ env.SOLR_VERSION }}  -Dfile=solr-${{ env.SOLR_VERSION }}.zip  
-          ls -l misc/devops/pom.xml
-          mvn -f misc/devops/pom.xml dependency:tree
+          echo "Install Solr ${{ env.SOLR_VERSION }}"
+          mvn -v install:install-file -DgroupId=org.apache.solr -DartifactId=solr -Dversion=${{ env.SOLR_VERSION }} -Dpackaging=zip -Dfile=solr-${{ env.SOLR_VERSION }}.zip
+          mvn dependency:tree
