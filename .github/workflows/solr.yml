@@ -36,5 +36,5 @@ jobs:
         id: install_solr_pkg
         run: |
           echo "Install Solr ${{ env.SOLR_VERSION }}"
-          mvn -v install:install-file -DgroupId=org.apache.solr -DartifactId=solr -Dversion=${{ env.SOLR_VERSION }} -Dpackaging=zip -Dfile=solr-/home/runner/work/sapsolr/sapsolr/solr-9.5.0.zip
+          mvn -v install:install-file -DgroupId=org.apache.solr -DartifactId=solr -Dversion=${{ env.SOLR_VERSION }} -Dpackaging=zip -Dfile=solr-${{ env.SOLR_VERSION }}.zip
           mvn  -f misc/devops/pom.xml dependency:tree
